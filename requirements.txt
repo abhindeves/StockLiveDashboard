@@ -1,0 +1,13 @@
+pandas
+numpy
+matplotlib
+seaborn
+joblib
+yfinance
+vaderSentiment
+colorama
+textblob
+scikit-learn
+plotly
+openai
+dotenv
