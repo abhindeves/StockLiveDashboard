@@ -1,5 +1,3 @@
-# from src.data_preparation import DataPreparation
-
 # from src.stock_plotter import StockPlotter
 
 # from src.prediction_model import PredictionModel
@@ -8,7 +6,8 @@
 from src.logger import get_logger
 from src.stock_processor import StockProcessor
 from src.news_processor import NewsProcessor
-from src.utils import data_combiner,prepare_final_data
+from src.utils import data_combiner,prepare_final_data,append_new_data_to_existing
+from src.prediction_model import PredictionModel
 
 import yfinance as yf
 import pandas as pd
@@ -46,8 +45,9 @@ def main():
             logger.info("Sending to prepare_final_df function to get only the required features")
             final_data_for_prediction = prepare_final_data(combined_news_and_price)
             print(final_data_for_prediction.T)
-            
-            
+            pred = PredictionModel(final_data_for_prediction)
+            logger.info("Back to main with the prediction")
+            append_new_data_to_existing(combined_news_and_price)
         else:
             print("News data not available")
             logger.info(f"Stock News Data Not Available for {start_date}")
