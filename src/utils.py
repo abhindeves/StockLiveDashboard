@@ -15,21 +15,20 @@ def prepare_final_data(df):
     return X
 
 def append_new_data_to_existing(todays_data):
-    # Add todays data to the table in order to plot graphs
-    # Read master data
     file_path = "data\MASTER_MSFT_FINAL.csv"
     master_data = pd.read_csv(file_path, index_col=0).tail(2)
     todays_data = todays_data.reset_index().rename(columns={'index':'Date'})
+    todays_data['Date'] = todays_data['Date'].astype('str')
+    
+    todays_data_date = str(todays_data['Date'].iloc[0])
+    if todays_data_date.split()[0] != master_data['Date'].iloc[-1]:
+        # master_data = pd.concat([master_data, todays_data], ignore_index=True)
+        master_data = master_data._append(todays_data,ignore_index=True)
+        print(master_data)
+    else:
+        pass
     print(master_data)
-    print(todays_data)
-    # Check if the date from merged dataset is already in master data
-    # merged_date = pd.to_datetime(todays_data['Date'])
-    # print(type(list(master_data['Date'].values)))
-    # print(type(str(merged_date)))
-    # if str(merged_date) not in list(master_data['Date'].values):
-    #     print("merged data not in the list")
-    #     # If date is not present, concatenate the merged data
-    #     master_data = pd.concat([master_data, todays_data.reset_index()], ignore_index=True)
-    #     print(master_data)
-    # else:
-    #     pass
+    
+
+def print_prediction(prediction):
+    pass

@@ -6,7 +6,7 @@
 from src.logger import get_logger
 from src.stock_processor import StockProcessor
 from src.news_processor import NewsProcessor
-from src.utils import data_combiner,prepare_final_data,append_new_data_to_existing
+from src.utils import data_combiner,prepare_final_data,append_new_data_to_existing,print_prediction
 from src.prediction_model import PredictionModel
 
 import yfinance as yf
@@ -44,10 +44,12 @@ def main():
             combined_news_and_price = data_combiner(stock_price,stock_news)
             logger.info("Sending to prepare_final_df function to get only the required features")
             final_data_for_prediction = prepare_final_data(combined_news_and_price)
-            print(final_data_for_prediction.T)
+            print(final_data_for_prediction.dtypes)
             pred = PredictionModel(final_data_for_prediction)
             logger.info("Back to main with the prediction")
             append_new_data_to_existing(combined_news_and_price)
+            print(pred.prediction)
+            
         else:
             print("News data not available")
             logger.info(f"Stock News Data Not Available for {start_date}")

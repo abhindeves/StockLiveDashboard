@@ -16,3 +16,4 @@ class PredictionModel:
         prediction_tomorrow = loaded_model.predict(todays_data.fillna(value=0))
         pred = prediction_tomorrow[0]
         self.logger.info("Got the prediction")
+        return pred
