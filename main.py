@@ -35,8 +35,8 @@ def main():
     # start_date = datetime.datetime.now() - datetime.timedelta(days=1)
     # end_date = datetime.datetime.now()
     
-    start_date = datetime.date(2024,8,30)
-    end_date = datetime.date(2024,8,31)
+    start_date = datetime.date(2024,8,29)
+    end_date = datetime.date(2024,8,30)
 
     # Check if start_date is Friday, Saturday, or Sunday
     if start_date.weekday() >= 4:  # Friday is 4, Saturday is 5, Sunday is 6
