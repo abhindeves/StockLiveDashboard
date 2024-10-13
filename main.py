@@ -29,6 +29,13 @@ def main():
     logger = get_logger()
     logger.info("Logger has been initialized.")
     
+    # Check if the current time is before 10 PM
+    current_time = datetime.datetime.now().time()
+    if current_time < datetime.time(22, 0):  # 22:00 is 10 PM
+        logger.info("Come back to run the program after 10 PM to get the best result.")
+        print("Come back to run the program after 10 PM to get the best result.")
+        return
+    
     ticker = "MSFT"
     query = 'MSFT OR microsoft OR Stock OR Market'
     
