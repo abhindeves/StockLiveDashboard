@@ -41,9 +41,13 @@ def append_new_data_to_existing(todays_data):
     if todays_data_date.split()[0] not in  master_data['Date'].astype(str).to_list():
         logging.info("Today's data is new, appending to master data.")
         master_data = master_data._append(todays_data,ignore_index=True)
+        print(master_data)
+        master_data.to_csv('data\MASTER_MSFT_FINAL.csv')
+        logging.info("Data put into MASTER DATA")
     else:
         logging.info("Today's data already exists in master data, skipping append.")
-    print(master_data)
+
+    
     
 
 def summarize(s) ->str:
